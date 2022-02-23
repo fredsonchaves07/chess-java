@@ -8,7 +8,7 @@ import chess.pieces.Rook;
 
 public class ChessMatch {
 
-    private Board board;
+    private final Board board;
     private Piece piece;
 
     public ChessMatch() {
@@ -35,7 +35,8 @@ public class ChessMatch {
     }
 
     private void validateSourcePosition(Position position) {
-        if (!board.thereIsAPiece(position)) throw new ChessException("There is no piece on source position");
+        if (!board.thereIsAPiece(position)) throw new ChessException("There is not piece on source position");
+        if (!board.piece(position).isThereAnyPossibleMove()) throw new ChessException("There is not possible moves");
     }
 
     private Piece makeMove(Position source, Position target) {
