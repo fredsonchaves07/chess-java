@@ -19,35 +19,38 @@ public class Rook extends ChessPiece {
     @Override
     public boolean[][] possibleMoves() {
         boolean[][] possibleMoves = new boolean[getBoard().getRows()][getBoard().getColumns()];
-        Position position = new Position(0, 0);
-        position.setValues(position.getRow() - 1, position.getColumn());
-        while (getBoard().positionExists(position) && !getBoard().thereIsAPiece(position)) {
-            possibleMoves[position.getRow()][position.getColumn()] = true;
-            position.setRow(position.getRow() - 1);
+        Position newPosition = new Position(0, 0);
+        newPosition.setValues(position.getRow() - 1, position.getColumn());
+        while (getBoard().positionExists(newPosition) && !getBoard().thereIsAPiece(newPosition)) {
+            possibleMoves[newPosition.getRow()][newPosition.getColumn()] = true;
+            newPosition.setRow(newPosition.getRow() - 1);
         }
-        if (getBoard().positionExists(position) && isThereOpponentPiece(position)) {
-            possibleMoves[position.getRow()][position.getColumn()] = true;
+        if (getBoard().positionExists(newPosition) && isThereOpponentPiece(newPosition)) {
+            possibleMoves[newPosition.getRow()][newPosition.getColumn()] = true;
         }
-        position.setValues(position.getRow(), position.getColumn() - 1);
-        while (getBoard().positionExists(position) && !getBoard().thereIsAPiece(position)) {
-            possibleMoves[position.getRow()][position.getColumn()] = true;
-            position.setColumn(position.getColumn() - 1);
+        newPosition.setValues(position.getRow(), position.getColumn() - 1);
+        while (getBoard().positionExists(newPosition) && !getBoard().thereIsAPiece(newPosition)) {
+            possibleMoves[newPosition.getRow()][newPosition.getColumn()] = true;
+            newPosition.setColumn(newPosition.getColumn() - 1);
         }
-        if (getBoard().positionExists(position) && isThereOpponentPiece(position)) {
-            possibleMoves[position.getRow()][position.getColumn()] = true;
+        if (getBoard().positionExists(newPosition) && isThereOpponentPiece(newPosition)) {
+            possibleMoves[newPosition.getRow()][newPosition.getColumn()] = true;
         }
-        position.setValues(position.getRow(), position.getColumn() + 1);
-        while (getBoard().positionExists(position) && !getBoard().thereIsAPiece(position)) {
-            possibleMoves[position.getRow()][position.getColumn()] = true;
-            position.setColumn(position.getColumn() + 1);
+        newPosition.setValues(position.getRow(), position.getColumn() + 1);
+        while (getBoard().positionExists(newPosition) && !getBoard().thereIsAPiece(newPosition)) {
+            possibleMoves[newPosition.getRow()][newPosition.getColumn()] = true;
+            newPosition.setColumn(newPosition.getColumn() + 1);
         }
-        if (getBoard().positionExists(position) && isThereOpponentPiece(position)) {
-            possibleMoves[position.getRow()][position.getColumn()] = true;
+        if (getBoard().positionExists(newPosition) && isThereOpponentPiece(newPosition)) {
+            possibleMoves[newPosition.getRow()][newPosition.getColumn()] = true;
         }
-        position.setValues(position.getRow() + 1, position.getColumn());
-        while (getBoard().positionExists(position) && !getBoard().thereIsAPiece(position)) {
-            possibleMoves[position.getRow()][position.getColumn()] = true;
-            position.setRow(position.getRow() + 1);
+        newPosition.setValues(position.getRow() + 1, position.getColumn());
+        while (getBoard().positionExists(newPosition) && !getBoard().thereIsAPiece(newPosition)) {
+            possibleMoves[newPosition.getRow()][newPosition.getColumn()] = true;
+            newPosition.setRow(newPosition.getRow() + 1);
+        }
+        if (getBoard().positionExists(newPosition) && isThereOpponentPiece(newPosition)) {
+            possibleMoves[newPosition.getRow()][newPosition.getColumn()] = true;
         }
         return possibleMoves;
     }
