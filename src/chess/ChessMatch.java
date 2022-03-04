@@ -63,7 +63,7 @@ public class ChessMatch {
             undoMove(source, target, capturedPiece);
             throw new ChessException("You can't put yourself in check");
         }
-        check = (testCheck(opponent(currentPlayer))) ? true : false;
+        check = testCheck(opponent(currentPlayer));
         nextTurn();
         return (ChessPiece) capturedPiece;
     }
@@ -105,8 +105,7 @@ public class ChessMatch {
     }
 
     private Color opponent(Color color) {
-        if (color == Color.WHITE) return Color.BLACK;
-        return Color.WHITE;
+        return (color == Color.WHITE) ? Color.BLACK : Color.WHITE;
     }
 
     private ChessPiece king(Color color) {
@@ -119,7 +118,7 @@ public class ChessMatch {
 
     private boolean testCheck(Color color) {
         Position kingPosition = king(color).getChessPosition().toPosition();
-        List<Piece> opponentPieces = piecesOnTheBoard.stream().filter(piece -> ((ChessPiece)piece).getColor() != opponent(color)).toList();
+        List<Piece> opponentPieces = piecesOnTheBoard.stream().filter(piece -> ((ChessPiece)piece).getColor() == opponent(color)).toList();
         for (Piece piece : opponentPieces) {
             boolean[][] mat = piece.possibleMoves();
             if (mat[kingPosition.getRow()][kingPosition.getColumn()]) return true;
