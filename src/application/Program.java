@@ -33,6 +33,11 @@ public class Program {
                 if (capturedPiece != null) {
                     capturedPieces.add(capturedPiece);
                 }
+                if (chessMatch.getPromoted() != null) {
+                    System.out.print("Enter piece for promotion (B/N/R/Q): ");
+                    String type = scanner.nextLine();
+                    chessMatch.replacePrmotedPiece(type);
+                }
             } catch (ChessException | InputMismatchException exception) {
                 System.out.println(exception.getMessage());
                 System.out.print("Please any key..");
